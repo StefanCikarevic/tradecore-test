@@ -1,12 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { ChakraProvider, extendTheme } from '@chakra-ui/react';
+import { StepsStyleConfig as Steps } from 'chakra-ui-steps';
+import { StateProvider } from './provider/StateProvider';
+
+const theme = extendTheme({
+  components: {
+    Steps,
+  },
+});
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <StateProvider>
+      <ChakraProvider theme={theme}>
+        <App />
+      </ChakraProvider>
+    </StateProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
